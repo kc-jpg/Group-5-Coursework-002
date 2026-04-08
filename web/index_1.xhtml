@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Formula 1</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: white;
+            }
+
+            /* HEADER */
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                background-color: white;
+                position: relative;
+                height: 100px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .header h1 {
+                font-size: 36px;
+                font-weight: bold;
+                color: black;
+                text-align: center;
+            }
+
+            .search-bar {
+                position: absolute;
+                left: 20px;
+                padding: 12px 16px;
+                font-size: 16px;
+                border: 2px solid black;
+                border-radius: 20px;
+                outline: none;
+                width: 280px;
+            }
+
+            .profile-circle {
+                position: absolute;
+                right: 20px;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                background-color: #333;
+                border: 2px solid black;
+                cursor: pointer;
+            }
+
+            /* NAV BUTTONS */
+            .nav-buttons {
+                display: flex;
+                width: 100%;
+            }
+
+            .nav-button {
+                flex: 1;
+                padding: 14px;
+                background-color: #29abe2;
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
+                text-align: center;
+                text-decoration: none;
+                border-right: 2px solid white;
+                cursor: pointer;
+            }
+
+            .nav-button:last-child {
+                border-right: none;
+            }
+
+            .nav-button:hover {
+                background-color: #1a8abf;
+            }
+
+            /* MAIN CONTENT AREA */
+            .main-content {
+                display: flex;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            /* LEFT SIDE - intro + glossary */
+            .left-side {
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .intro-box {
+                background-color: #f47c20;
+                border: 2px solid #f47c20;
+                border-radius: 8px;
+                padding: 30px;
+                font-size: 16px;
+                line-height: 1.8;
+                color: white;
+            }
+
+            .intro-box h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+                color: white;
+            }
+
+            .glossary-box {
+                background-color: #ffb6c1;
+                border: 2px solid #f47c20;
+                border-radius: 8px;
+                padding: 20px;
+            }
+
+            .glossary-box h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .glossary-box textarea {
+                width: 100%;
+                height: 120px;
+                font-size: 15px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                background-color: #fff0f3;
+                resize: none;
+                font-family: Arial, sans-serif;
+            }
+
+            /* RIGHT SIDE - headlines */
+            .right-side {
+                flex: 1;
+                background-color: #8b0000;
+                border-radius: 8px;
+                padding: 20px;
+                color: white;
+            }
+
+            .right-side h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+                border-bottom: 2px solid white;
+                padding-bottom: 8px;
+            }
+
+            .headline {
+                background-color: rgba(255,255,255,0.1);
+                border-radius: 6px;
+                padding: 12px;
+                margin-bottom: 12px;
+                font-size: 14px;
+                line-height: 1.5;
+                cursor: pointer;
+            }
+
+            .headline:hover {
+                background-color: rgba(255,255,255,0.2);
+            }
+
+            .headline .date {
+                font-size: 11px;
+                color: #ffaaaa;
+                margin-bottom: 4px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+
+        <!-- HEADER -->
+        <div class="header">
+            <input type="text" class="search-bar" placeholder="Search..." />
+            <h1>Formula 1 Website</h1>
+            <div class="profile-circle"></div>
+        </div>
+
+        <!-- NAV BUTTONS -->
+        <div class="nav-buttons">
+            <a href="Seasons.xhtml"  class="nav-button">Seasons</a>
+            <a href="Teams.xhtml"    class="nav-button">Teams</a>
+            <a href="Drivers.xhtml"  class="nav-button">Drivers</a>
+            <a href="Circuits.xhtml" class="nav-button">Circuits</a>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+
+            <!-- LEFT: Intro + Glossary -->
+            <div class="left-side">
+
+                <div class="intro-box">
+                    <h2>Welcome to the World of Formula 1</h2>
+                    <p>
+                        Formula 1 is the highest class of international motorsport sanctioned by the
+                        Fédération Internationale de l'Automobile (FIA). Known as the pinnacle of
+                        motorsport, F1 races take place on purpose-built circuits and street circuits
+                        across the globe, attracting millions of fans worldwide.
+                    </p>
+                    <br/>
+                    <p>
+                        Each season consists of a series of races known as Grands Prix, held across
+                        multiple continents. Teams compete using highly advanced single-seater cars
+                        powered by hybrid turbocharged engines, pushing the boundaries of engineering
+                        and technology. Drivers battle not only for race victories but also for the
+                        coveted World Drivers Championship and Constructors Championship titles.
+                    </p>
+                    <br/>
+                    <p>
+                        With legendary circuits like Monza, Silverstone, and Monaco, and iconic
+                        champions such as Ayrton Senna, Michael Schumacher, and Lewis Hamilton,
+                        Formula 1 has a rich history spanning over 70 years of racing excellence.
+                    </p>
+                </div>
+
+                <div class="glossary-box">
+                    <h2>F1 Glossary</h2>
+                    <textarea readonly="readonly">
+DRS (Drag Reduction System) - A movable flap on the rear wing that reduces drag to help overtaking.
+Pit Stop - When a car pulls into the pit lane for tyre changes or repairs during a race.
+Podium - The top 3 finishers in a race (1st, 2nd, 3rd place).
+Pole Position - The front spot on the starting grid, earned by the fastest qualifier.
+Safety Car - Deployed during dangerous conditions to neutralise the race and bunch up the field.
+Understeer - When the front tyres lose grip and the car pushes wide in a corner.
+Oversteer - When the rear tyres lose grip and the back of the car slides out.
+Parc Fermé - A restricted area where cars cannot be modified after qualifying.
+Grand Prix - An individual race event in the Formula 1 World Championship.
+Constructor - A team that designs and builds its own F1 car.
+                    </textarea>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: Latest Headlines -->
+            <div class="right-side">
+                <h2>Latest Headlines</h2>
+
+                <div class="headline">
+                    <div class="date">April 2025</div>
+                    Max Verstappen takes pole position at the Bahrain Grand Prix with a stunning lap.
+                </div>
+
+                <div class="headline">
+                    <div class="date">March 2025</div>
+                    Ferrari announce major upgrades ahead of the European season opener.
+                </div>
+
+                <div class="headline">
+                    <div class="date">March 2025</div>
+                    Lewis Hamilton speaks out on his move to Ferrari — "This is a new chapter."
+                </div>
+
+                <div class="headline">
+                    <div class="date">February 2025</div>
+                    FIA confirms new tyre regulations set to shake up strategy for the 2025 season.
+                </div>
+
+                <div class="headline">
+                    <div class="date">February 2025</div>
+                    McLaren reveal their 2025 challenger at a star-studded launch event in London.
+                </div>
+            </div>
+
+        </div>
+
+    </h:body>
+</html>
