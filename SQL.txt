@@ -1,4 +1,4 @@
--- User Data
+-- User Table
 CREATE TABLE Users (
     user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -7,7 +7,7 @@ CREATE TABLE Users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Teams Data
+-- Teams Table
 CREATE TABLE Teams (
     team_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     team_name VARCHAR(100) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE Teams (
     engine VARCHAR(100)
 );
 
--- Drivers Data
+-- Drivers Table
 CREATE TABLE Drivers (
     driver_id VARCHAR(10) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE Drivers (
     FOREIGN KEY (team_id) REFERENCES Teams(team_id)
 );
 
--- Circuits Data
+-- Circuits Table
 CREATE TABLE Circuits (
     circuit_id VARCHAR(10) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE Circuits (
     type VARCHAR(50)
 );
 
--- Seasons Data
+-- Seasons Table
 CREATE TABLE Seasons (
     season_year INT PRIMARY KEY,
     winner_driver_id VARCHAR(10),
@@ -45,7 +45,7 @@ CREATE TABLE Seasons (
     FOREIGN KEY (winner_constructor_id) REFERENCES Teams(team_id)
 );
 
--- Races Data
+-- Races Table
 CREATE TABLE Races (
     race_id VARCHAR(20) PRIMARY KEY,
     race_name VARCHAR(100),
@@ -54,7 +54,7 @@ CREATE TABLE Races (
     FOREIGN KEY (circuit_id) REFERENCES Circuits(circuit_id)
 );
 
--- Race Results Data
+-- Race Results Table
 CREATE TABLE Race_Results (
     result_id VARCHAR(30) PRIMARY KEY,
     driver_id VARCHAR(10),
@@ -68,7 +68,7 @@ CREATE TABLE Race_Results (
     FOREIGN KEY (season_year) REFERENCES Seasons(season_year)
 );
 
--- Bookmarks Data
+-- Bookmarks Table
 CREATE TABLE Bookmarks (
     bookmark_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id INT,
@@ -268,3 +268,7 @@ INSERT INTO Race_Results (result_id, driver_id, race_id, season_year, position, 
 ('2026-JPN-AA23', 'AA23', 'JapanGP', 2026, 20,  0.0, 'Finished'),
 ('2026-JPN-LS18', 'LS18', 'JapanGP', 2026, 21,  0.0, 'DNF'),
 ('2026-JPN-OB87', 'OB87', 'JapanGP', 2026, 22,  0.0, 'DNF');
+
+--Users Data
+INSERT INTO Users (username, password_hash, email)
+VALUES ('testuser', 'password123', 'test@f1hub.com');
