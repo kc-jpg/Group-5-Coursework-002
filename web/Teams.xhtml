@@ -1,10 +1,57 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./template.xhtml">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <ui:define name="content">
-        <!-- Teams content goes here -->
-    </ui:define>
-
-</ui:composition>
+    <ui:composition template="./template.xhtml">
+        <ui:define name="content">
+            <div class="page-title">Teams</div>
+            <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="No teams found." rendered="#{teamsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{teamsController.items.rowCount > 0}">
+                    <h:dataTable value="#{teamsController.items}" var="item"
+                                 styleClass="data-table">
+                        <h:column>
+                            <f:facet name="header">ID</f:facet>
+                            <h:outputText value="#{item.teamId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Team Name</f:facet>
+                            <h:outputText value="#{item.teamName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Base Country</f:facet>
+                            <h:outputText value="#{item.baseCountry}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Principal</f:facet>
+                            <h:outputText value="#{item.principal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Engine</f:facet>
+                            <h:outputText value="#{item.engine}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Actions</f:facet>
+                            <h:commandLink action="#{teamsController.prepareView}" styleClass="action-link" value="View"/>
+                            <h:commandLink action="#{teamsController.prepareEdit}" styleClass="action-link" value="Edit"/>
+                            <h:commandLink action="#{teamsController.destroy}"    styleClass="action-link" value="Delete"/>
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <h:outputText value="#{teamsController.pagination.pageFirstItem + 1}–#{teamsController.pagination.pageLastItem + 1} of #{teamsController.pagination.itemsCount}"/>
+                    &#160;
+                    <h:commandLink action="#{teamsController.previous}" value="&lt; Prev" rendered="#{teamsController.pagination.hasPreviousPage}" styleClass="action-link"/>
+                    <h:commandLink action="#{teamsController.next}"     value="Next &gt;" rendered="#{teamsController.pagination.hasNextPage}"     styleClass="action-link"/>
+                </h:panelGroup>
+                <br/>
+                <h:commandLink action="#{teamsController.prepareCreate}" styleClass="action-link" value="+ Add New Team"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDriversTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDriversEmpty}" rendered="#{driversController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{driversController.items.rowCount > 0}">
+                    <h:outputText value="#{driversController.pagination.pageFirstItem + 1}..#{driversController.pagination.pageLastItem + 1}/#{driversController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{driversController.previous}" value="#{bundle.Previous} #{driversController.pagination.pageSize}" rendered="#{driversController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{driversController.next}" value="#{bundle.Next} #{driversController.pagination.pageSize}" rendered="#{driversController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{driversController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDriversTitle_driverId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.driverId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDriversTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDriversTitle_nationality}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nationality}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDriversTitle_dob}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dob}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDriversTitle_teamId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.teamId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{driversController.prepareView}" value="#{bundle.ListDriversViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{driversController.prepareEdit}" value="#{bundle.ListDriversEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{driversController.destroy}" value="#{bundle.ListDriversDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{driversController.prepareCreate}" value="#{bundle.ListDriversCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDriversIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

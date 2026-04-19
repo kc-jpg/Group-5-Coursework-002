@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Formula 1 Hub - Login</title>
+        <style>
+            body {
+                background-image: url('https://img.freepik.com/free-vector/futuristic-car-speedometer-gauge-dial_60438-2055.jpg?w=740');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                font-family: Arial, sans-serif;
+            }
+            .login-box {
+                width: 300px;
+                margin: 100px auto;
+                text-align: center;
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 20px;
+                border-radius: 10px;
+                color: white;
+            }
+            input {
+                width: 90%;
+                padding: 5px;
+            }
+            button {
+                padding: 8px 15px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="login-box">
+            <h1>Formula 1 Hub</h1>
+            <h:form>
+                <h:outputText
+                    value="#{loginBean.errorMessage}"
+                    rendered="#{not empty loginBean.errorMessage}"
+                    style="color:red;"/>
+                <br/>
+                <h:outputLabel for="username" value="Username: "/>
+                <h:inputText
+                    id="username"
+                    value="#{loginBean.username}"
+                    required="true"
+                    requiredMessage="Please enter your username"/>
+                <br/><br/>
+                <h:outputLabel for="password" value="Password: "/>
+                <h:inputSecret
+                    id="password"
+                    value="#{loginBean.password}"
+                    required="true"
+                    requiredMessage="Please enter your password"/>
+                <br/><br/>
+                <h:commandButton value="Login" action="#{loginBean.login}"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>

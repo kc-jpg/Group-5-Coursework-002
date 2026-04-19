@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDriversTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDriversLabel_driverId}" for="driverId" />
+                    <h:inputText id="driverId" value="#{driversController.selected.driverId}" title="#{bundle.EditDriversTitle_driverId}" required="true" requiredMessage="#{bundle.EditDriversRequiredMessage_driverId}"/>
+                    <h:outputLabel value="#{bundle.EditDriversLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{driversController.selected.name}" title="#{bundle.EditDriversTitle_name}" required="true" requiredMessage="#{bundle.EditDriversRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditDriversLabel_nationality}" for="nationality" />
+                    <h:inputText id="nationality" value="#{driversController.selected.nationality}" title="#{bundle.EditDriversTitle_nationality}" />
+                    <h:outputLabel value="#{bundle.EditDriversLabel_dob}" for="dob" />
+                    <h:inputText id="dob" value="#{driversController.selected.dob}" title="#{bundle.EditDriversTitle_dob}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditDriversLabel_teamId}" for="teamId" />
+                    <h:selectOneMenu id="teamId" value="#{driversController.selected.teamId}" title="#{bundle.EditDriversTitle_teamId}" >
+                        <f:selectItems value="#{teamsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{driversController.update}" value="#{bundle.EditDriversSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDriversViewLink}"/>
+                <br />
+                <h:commandLink action="#{driversController.prepareList}" value="#{bundle.EditDriversShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDriversIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

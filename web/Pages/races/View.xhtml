@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRacesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRacesLabel_raceId}"/>
+                    <h:outputText value="#{racesController.selected.raceId}" title="#{bundle.ViewRacesTitle_raceId}"/>
+                    <h:outputText value="#{bundle.ViewRacesLabel_raceName}"/>
+                    <h:outputText value="#{racesController.selected.raceName}" title="#{bundle.ViewRacesTitle_raceName}"/>
+                    <h:outputText value="#{bundle.ViewRacesLabel_raceDate}"/>
+                    <h:outputText value="#{racesController.selected.raceDate}" title="#{bundle.ViewRacesTitle_raceDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRacesLabel_circuitId}"/>
+                    <h:outputText value="#{racesController.selected.circuitId}" title="#{bundle.ViewRacesTitle_circuitId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{racesController.destroyAndView}" value="#{bundle.ViewRacesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRacesEditLink}"/>
+                <br />
+                <h:commandLink action="#{racesController.prepareCreate}" value="#{bundle.ViewRacesCreateLink}" />
+                <br />
+                <h:commandLink action="#{racesController.prepareList}" value="#{bundle.ViewRacesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRacesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

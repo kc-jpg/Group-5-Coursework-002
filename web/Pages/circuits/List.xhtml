@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCircuitsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCircuitsEmpty}" rendered="#{circuitsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{circuitsController.items.rowCount > 0}">
+                    <h:outputText value="#{circuitsController.pagination.pageFirstItem + 1}..#{circuitsController.pagination.pageLastItem + 1}/#{circuitsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{circuitsController.previous}" value="#{bundle.Previous} #{circuitsController.pagination.pageSize}" rendered="#{circuitsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{circuitsController.next}" value="#{bundle.Next} #{circuitsController.pagination.pageSize}" rendered="#{circuitsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{circuitsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCircuitsTitle_circuitId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.circuitId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCircuitsTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCircuitsTitle_location}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.location}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCircuitsTitle_length}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.length}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCircuitsTitle_turns}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.turns}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCircuitsTitle_type}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.type}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{circuitsController.prepareView}" value="#{bundle.ListCircuitsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{circuitsController.prepareEdit}" value="#{bundle.ListCircuitsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{circuitsController.destroy}" value="#{bundle.ListCircuitsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{circuitsController.prepareCreate}" value="#{bundle.ListCircuitsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCircuitsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRaceResultsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRaceResultsEmpty}" rendered="#{raceResultsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{raceResultsController.items.rowCount > 0}">
+                    <h:outputText value="#{raceResultsController.pagination.pageFirstItem + 1}..#{raceResultsController.pagination.pageLastItem + 1}/#{raceResultsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{raceResultsController.previous}" value="#{bundle.Previous} #{raceResultsController.pagination.pageSize}" rendered="#{raceResultsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{raceResultsController.next}" value="#{bundle.Next} #{raceResultsController.pagination.pageSize}" rendered="#{raceResultsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{raceResultsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRaceResultsTitle_resultId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resultId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRaceResultsTitle_position}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.position}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRaceResultsTitle_pointsEarned}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pointsEarned}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRaceResultsTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRaceResultsTitle_driverId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.driverId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRaceResultsTitle_raceId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.raceId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRaceResultsTitle_seasonYear}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.seasonYear}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{raceResultsController.prepareView}" value="#{bundle.ListRaceResultsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{raceResultsController.prepareEdit}" value="#{bundle.ListRaceResultsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{raceResultsController.destroy}" value="#{bundle.ListRaceResultsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{raceResultsController.prepareCreate}" value="#{bundle.ListRaceResultsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRaceResultsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

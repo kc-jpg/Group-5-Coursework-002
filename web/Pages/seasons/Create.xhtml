@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSeasonsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSeasonsLabel_seasonYear}" for="seasonYear" />
+                    <h:inputText id="seasonYear" value="#{seasonsController.selected.seasonYear}" title="#{bundle.CreateSeasonsTitle_seasonYear}" required="true" requiredMessage="#{bundle.CreateSeasonsRequiredMessage_seasonYear}"/>
+                    <h:outputLabel value="#{bundle.CreateSeasonsLabel_winnerDriverId}" for="winnerDriverId" />
+                    <h:selectOneMenu id="winnerDriverId" value="#{seasonsController.selected.winnerDriverId}" title="#{bundle.CreateSeasonsTitle_winnerDriverId}" >
+                        <f:selectItems value="#{driversController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSeasonsLabel_winnerConstructorId}" for="winnerConstructorId" />
+                    <h:selectOneMenu id="winnerConstructorId" value="#{seasonsController.selected.winnerConstructorId}" title="#{bundle.CreateSeasonsTitle_winnerConstructorId}" >
+                        <f:selectItems value="#{teamsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{seasonsController.create}" value="#{bundle.CreateSeasonsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{seasonsController.prepareList}" value="#{bundle.CreateSeasonsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSeasonsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

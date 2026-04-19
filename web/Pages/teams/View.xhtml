@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTeamsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTeamsLabel_teamId}"/>
+                    <h:outputText value="#{teamsController.selected.teamId}" title="#{bundle.ViewTeamsTitle_teamId}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_teamName}"/>
+                    <h:outputText value="#{teamsController.selected.teamName}" title="#{bundle.ViewTeamsTitle_teamName}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_baseCountry}"/>
+                    <h:outputText value="#{teamsController.selected.baseCountry}" title="#{bundle.ViewTeamsTitle_baseCountry}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_principal}"/>
+                    <h:outputText value="#{teamsController.selected.principal}" title="#{bundle.ViewTeamsTitle_principal}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_engine}"/>
+                    <h:outputText value="#{teamsController.selected.engine}" title="#{bundle.ViewTeamsTitle_engine}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{teamsController.destroyAndView}" value="#{bundle.ViewTeamsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTeamsEditLink}"/>
+                <br />
+                <h:commandLink action="#{teamsController.prepareCreate}" value="#{bundle.ViewTeamsCreateLink}" />
+                <br />
+                <h:commandLink action="#{teamsController.prepareList}" value="#{bundle.ViewTeamsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTeamsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBookmarksTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBookmarksLabel_bookmarkId}"/>
+                    <h:outputText value="#{bookmarksController.selected.bookmarkId}" title="#{bundle.ViewBookmarksTitle_bookmarkId}"/>
+                    <h:outputText value="#{bundle.ViewBookmarksLabel_itemId}"/>
+                    <h:outputText value="#{bookmarksController.selected.itemId}" title="#{bundle.ViewBookmarksTitle_itemId}"/>
+                    <h:outputText value="#{bundle.ViewBookmarksLabel_itemType}"/>
+                    <h:outputText value="#{bookmarksController.selected.itemType}" title="#{bundle.ViewBookmarksTitle_itemType}"/>
+                    <h:outputText value="#{bundle.ViewBookmarksLabel_addedAt}"/>
+                    <h:outputText value="#{bookmarksController.selected.addedAt}" title="#{bundle.ViewBookmarksTitle_addedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBookmarksLabel_userId}"/>
+                    <h:outputText value="#{bookmarksController.selected.userId}" title="#{bundle.ViewBookmarksTitle_userId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bookmarksController.destroyAndView}" value="#{bundle.ViewBookmarksDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBookmarksEditLink}"/>
+                <br />
+                <h:commandLink action="#{bookmarksController.prepareCreate}" value="#{bundle.ViewBookmarksCreateLink}" />
+                <br />
+                <h:commandLink action="#{bookmarksController.prepareList}" value="#{bundle.ViewBookmarksShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBookmarksIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

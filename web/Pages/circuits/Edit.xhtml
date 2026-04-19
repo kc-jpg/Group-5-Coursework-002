@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCircuitsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCircuitsLabel_circuitId}" for="circuitId" />
+                    <h:inputText id="circuitId" value="#{circuitsController.selected.circuitId}" title="#{bundle.EditCircuitsTitle_circuitId}" required="true" requiredMessage="#{bundle.EditCircuitsRequiredMessage_circuitId}"/>
+                    <h:outputLabel value="#{bundle.EditCircuitsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{circuitsController.selected.name}" title="#{bundle.EditCircuitsTitle_name}" required="true" requiredMessage="#{bundle.EditCircuitsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditCircuitsLabel_location}" for="location" />
+                    <h:inputText id="location" value="#{circuitsController.selected.location}" title="#{bundle.EditCircuitsTitle_location}" />
+                    <h:outputLabel value="#{bundle.EditCircuitsLabel_length}" for="length" />
+                    <h:inputText id="length" value="#{circuitsController.selected.length}" title="#{bundle.EditCircuitsTitle_length}" />
+                    <h:outputLabel value="#{bundle.EditCircuitsLabel_turns}" for="turns" />
+                    <h:inputText id="turns" value="#{circuitsController.selected.turns}" title="#{bundle.EditCircuitsTitle_turns}" />
+                    <h:outputLabel value="#{bundle.EditCircuitsLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{circuitsController.selected.type}" title="#{bundle.EditCircuitsTitle_type}" />
+                </h:panelGrid>
+                <h:commandLink action="#{circuitsController.update}" value="#{bundle.EditCircuitsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCircuitsViewLink}"/>
+                <br />
+                <h:commandLink action="#{circuitsController.prepareList}" value="#{bundle.EditCircuitsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCircuitsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

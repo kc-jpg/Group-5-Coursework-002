@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCircuitsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCircuitsLabel_circuitId}"/>
+                    <h:outputText value="#{circuitsController.selected.circuitId}" title="#{bundle.ViewCircuitsTitle_circuitId}"/>
+                    <h:outputText value="#{bundle.ViewCircuitsLabel_name}"/>
+                    <h:outputText value="#{circuitsController.selected.name}" title="#{bundle.ViewCircuitsTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewCircuitsLabel_location}"/>
+                    <h:outputText value="#{circuitsController.selected.location}" title="#{bundle.ViewCircuitsTitle_location}"/>
+                    <h:outputText value="#{bundle.ViewCircuitsLabel_length}"/>
+                    <h:outputText value="#{circuitsController.selected.length}" title="#{bundle.ViewCircuitsTitle_length}"/>
+                    <h:outputText value="#{bundle.ViewCircuitsLabel_turns}"/>
+                    <h:outputText value="#{circuitsController.selected.turns}" title="#{bundle.ViewCircuitsTitle_turns}"/>
+                    <h:outputText value="#{bundle.ViewCircuitsLabel_type}"/>
+                    <h:outputText value="#{circuitsController.selected.type}" title="#{bundle.ViewCircuitsTitle_type}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{circuitsController.destroyAndView}" value="#{bundle.ViewCircuitsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCircuitsEditLink}"/>
+                <br />
+                <h:commandLink action="#{circuitsController.prepareCreate}" value="#{bundle.ViewCircuitsCreateLink}" />
+                <br />
+                <h:commandLink action="#{circuitsController.prepareList}" value="#{bundle.ViewCircuitsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCircuitsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

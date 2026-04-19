@@ -1,10 +1,49 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./template.xhtml">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <ui:define name="content">
-        <!-- Seasons content goes here -->
-    </ui:define>
-
-</ui:composition>
+    <ui:composition template="./template.xhtml">
+        <ui:define name="content">
+            <div class="page-title">Seasons</div>
+            <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="No seasons found." rendered="#{seasonsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{seasonsController.items.rowCount > 0}">
+                    <h:dataTable value="#{seasonsController.items}" var="item"
+                                 styleClass="data-table">
+                        <h:column>
+                            <f:facet name="header">Season Year</f:facet>
+                            <h:outputText value="#{item.seasonYear}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Champion Driver</f:facet>
+                            <h:outputText value="#{item.winnerDriverId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Champion Constructor</f:facet>
+                            <h:outputText value="#{item.winnerConstructorId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Actions</f:facet>
+                            <h:commandLink action="#{seasonsController.prepareView}" styleClass="action-link" value="View"/>
+                            <h:commandLink action="#{seasonsController.prepareEdit}" styleClass="action-link" value="Edit"/>
+                            <h:commandLink action="#{seasonsController.destroy}"    styleClass="action-link" value="Delete"/>
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <h:outputText value="#{seasonsController.pagination.pageFirstItem + 1}–#{seasonsController.pagination.pageLastItem + 1} of #{seasonsController.pagination.itemsCount}"/>
+                    &#160;
+                    <h:commandLink action="#{seasonsController.previous}" value="&lt; Prev" rendered="#{seasonsController.pagination.hasPreviousPage}" styleClass="action-link"/>
+                    <h:commandLink action="#{seasonsController.next}"     value="Next &gt;" rendered="#{seasonsController.pagination.hasNextPage}"     styleClass="action-link"/>
+                </h:panelGroup>
+                <br/>
+                <h:commandLink action="#{seasonsController.prepareCreate}" styleClass="action-link" value="+ Add New Season"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

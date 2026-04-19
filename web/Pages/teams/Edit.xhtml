@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTeamsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_teamId}" for="teamId" />
+                    <h:inputText id="teamId" value="#{teamsController.selected.teamId}" title="#{bundle.EditTeamsTitle_teamId}" required="true" requiredMessage="#{bundle.EditTeamsRequiredMessage_teamId}"/>
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_teamName}" for="teamName" />
+                    <h:inputText id="teamName" value="#{teamsController.selected.teamName}" title="#{bundle.EditTeamsTitle_teamName}" required="true" requiredMessage="#{bundle.EditTeamsRequiredMessage_teamName}"/>
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_baseCountry}" for="baseCountry" />
+                    <h:inputText id="baseCountry" value="#{teamsController.selected.baseCountry}" title="#{bundle.EditTeamsTitle_baseCountry}" />
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_principal}" for="principal" />
+                    <h:inputText id="principal" value="#{teamsController.selected.principal}" title="#{bundle.EditTeamsTitle_principal}" />
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_engine}" for="engine" />
+                    <h:inputText id="engine" value="#{teamsController.selected.engine}" title="#{bundle.EditTeamsTitle_engine}" />
+                </h:panelGrid>
+                <h:commandLink action="#{teamsController.update}" value="#{bundle.EditTeamsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTeamsViewLink}"/>
+                <br />
+                <h:commandLink action="#{teamsController.prepareList}" value="#{bundle.EditTeamsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTeamsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

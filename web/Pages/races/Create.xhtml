@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRacesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRacesLabel_raceId}" for="raceId" />
+                    <h:inputText id="raceId" value="#{racesController.selected.raceId}" title="#{bundle.CreateRacesTitle_raceId}" required="true" requiredMessage="#{bundle.CreateRacesRequiredMessage_raceId}"/>
+                    <h:outputLabel value="#{bundle.CreateRacesLabel_raceName}" for="raceName" />
+                    <h:inputText id="raceName" value="#{racesController.selected.raceName}" title="#{bundle.CreateRacesTitle_raceName}" />
+                    <h:outputLabel value="#{bundle.CreateRacesLabel_raceDate}" for="raceDate" />
+                    <h:inputText id="raceDate" value="#{racesController.selected.raceDate}" title="#{bundle.CreateRacesTitle_raceDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRacesLabel_circuitId}" for="circuitId" />
+                    <h:selectOneMenu id="circuitId" value="#{racesController.selected.circuitId}" title="#{bundle.CreateRacesTitle_circuitId}" >
+                        <f:selectItems value="#{circuitsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{racesController.create}" value="#{bundle.CreateRacesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{racesController.prepareList}" value="#{bundle.CreateRacesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRacesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

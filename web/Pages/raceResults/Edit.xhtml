@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRaceResultsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRaceResultsLabel_resultId}" for="resultId" />
+                    <h:inputText id="resultId" value="#{raceResultsController.selected.resultId}" title="#{bundle.EditRaceResultsTitle_resultId}" required="true" requiredMessage="#{bundle.EditRaceResultsRequiredMessage_resultId}"/>
+                    <h:outputLabel value="#{bundle.EditRaceResultsLabel_position}" for="position" />
+                    <h:inputText id="position" value="#{raceResultsController.selected.position}" title="#{bundle.EditRaceResultsTitle_position}" />
+                    <h:outputLabel value="#{bundle.EditRaceResultsLabel_pointsEarned}" for="pointsEarned" />
+                    <h:inputText id="pointsEarned" value="#{raceResultsController.selected.pointsEarned}" title="#{bundle.EditRaceResultsTitle_pointsEarned}" />
+                    <h:outputLabel value="#{bundle.EditRaceResultsLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{raceResultsController.selected.status}" title="#{bundle.EditRaceResultsTitle_status}" />
+                    <h:outputLabel value="#{bundle.EditRaceResultsLabel_driverId}" for="driverId" />
+                    <h:selectOneMenu id="driverId" value="#{raceResultsController.selected.driverId}" title="#{bundle.EditRaceResultsTitle_driverId}" >
+                        <f:selectItems value="#{driversController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRaceResultsLabel_raceId}" for="raceId" />
+                    <h:selectOneMenu id="raceId" value="#{raceResultsController.selected.raceId}" title="#{bundle.EditRaceResultsTitle_raceId}" >
+                        <f:selectItems value="#{racesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRaceResultsLabel_seasonYear}" for="seasonYear" />
+                    <h:selectOneMenu id="seasonYear" value="#{raceResultsController.selected.seasonYear}" title="#{bundle.EditRaceResultsTitle_seasonYear}" >
+                        <f:selectItems value="#{seasonsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{raceResultsController.update}" value="#{bundle.EditRaceResultsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRaceResultsViewLink}"/>
+                <br />
+                <h:commandLink action="#{raceResultsController.prepareList}" value="#{bundle.EditRaceResultsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRaceResultsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

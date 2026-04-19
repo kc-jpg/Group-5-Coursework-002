@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBookmarksTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBookmarksLabel_bookmarkId}" for="bookmarkId" />
+                    <h:inputText id="bookmarkId" value="#{bookmarksController.selected.bookmarkId}" title="#{bundle.CreateBookmarksTitle_bookmarkId}" required="true" requiredMessage="#{bundle.CreateBookmarksRequiredMessage_bookmarkId}"/>
+                    <h:outputLabel value="#{bundle.CreateBookmarksLabel_itemId}" for="itemId" />
+                    <h:inputText id="itemId" value="#{bookmarksController.selected.itemId}" title="#{bundle.CreateBookmarksTitle_itemId}" />
+                    <h:outputLabel value="#{bundle.CreateBookmarksLabel_itemType}" for="itemType" />
+                    <h:inputText id="itemType" value="#{bookmarksController.selected.itemType}" title="#{bundle.CreateBookmarksTitle_itemType}" />
+                    <h:outputLabel value="#{bundle.CreateBookmarksLabel_addedAt}" for="addedAt" />
+                    <h:inputText id="addedAt" value="#{bookmarksController.selected.addedAt}" title="#{bundle.CreateBookmarksTitle_addedAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateBookmarksLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{bookmarksController.selected.userId}" title="#{bundle.CreateBookmarksTitle_userId}" >
+                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bookmarksController.create}" value="#{bundle.CreateBookmarksSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bookmarksController.prepareList}" value="#{bundle.CreateBookmarksShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBookmarksIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

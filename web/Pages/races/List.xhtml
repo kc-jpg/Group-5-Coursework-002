@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRacesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRacesEmpty}" rendered="#{racesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{racesController.items.rowCount > 0}">
+                    <h:outputText value="#{racesController.pagination.pageFirstItem + 1}..#{racesController.pagination.pageLastItem + 1}/#{racesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{racesController.previous}" value="#{bundle.Previous} #{racesController.pagination.pageSize}" rendered="#{racesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{racesController.next}" value="#{bundle.Next} #{racesController.pagination.pageSize}" rendered="#{racesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{racesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRacesTitle_raceId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.raceId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRacesTitle_raceName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.raceName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRacesTitle_raceDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.raceDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRacesTitle_circuitId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.circuitId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{racesController.prepareView}" value="#{bundle.ListRacesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{racesController.prepareEdit}" value="#{bundle.ListRacesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{racesController.destroy}" value="#{bundle.ListRacesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{racesController.prepareCreate}" value="#{bundle.ListRacesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRacesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
