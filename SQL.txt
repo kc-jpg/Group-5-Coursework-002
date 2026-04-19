@@ -272,5 +272,3 @@ INSERT INTO Race_Results (result_id, driver_id, race_id, season_year, position, 
 --Users Data
 INSERT INTO Users (username, password_hash, email)
 VALUES ('testuser', 'password123', 'test@f1hub.com');
-
-ALTER TABLE USERS ADD COLUMN IS_ADMIN SMALLINT DEFAULT 0 NOT NULL;
